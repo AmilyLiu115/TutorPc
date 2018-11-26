@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" href="libs/element-ui/eleIndex.css" >
+	<link rel="stylesheet" href="libs/swiper.min.css" >
+	<link rel="stylesheet" href="css/home.min.css">
+</head>
+<body>
+	<div id="tutorList">
+        <div class="fixed">
+            <div class="header clearfix">
+                <img src="./images/logo.png" alt="">
+                <div class="navbar">
+                        <a href="./home.htm" :class="{'active':indictor == 0}">首页</a>
+                        <a href="./tutorList.htm" :class="{'active':indictor == 1}">优秀教师</a>
+                        <a href="./educList.htm" :class="{'active':indictor == 2}">教育资讯</a>
+                        <a href="./trainList.htm" :class="{'active':indictor == 3}">培养研训</a>
+                        <a href="./actList.htm" :class="{'active':indictor == 4}">活动掠影</a>
+                </div>
+                 <!--搜索模块-->
+                <div class="search-module">
+                    <div class="search-box">
+                        <div class="select-box" :class="{open:searchSelect==1}" @mouseenter="searchSelect=1"
+                            @mouseleave="searchSelect=0">
+                            <span class="before-arrow"></span>
+                            <ul>
+                                <li>老师</li>
+                                <li>学校</li>
+                                <!-- <li v-for="item,index in searchSelectArr" @click="selectItem(item,index)">{{item.name}}</li> -->
+                            </ul>
+                            <span class="after-arrow"></span>
+                        </div>
+                        <div class="input-box">
+                            <input v-model="searchText" type="text">
+                            <!-- <div class="btn" @click="search">搜 索</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="tutorList"> -->
+            <div class="banner_top">
+                <div class="imgbg"></div>
+                <!-- <img src="./images/tbanner.png" alt=""> -->
+            </div>
+            <div class="main">
+                  <div class="tabs">
+                      <!-- <el-tabs v-model="activeName">
+                              <el-tab-pane  name="first">
+                                  <span slot="label">优秀教师<i>EXCELLENT TEACHER</i></span>
+                              </el-tab-pane>
+                      </el-tabs> -->
+                        <div class="line">
+                            <div class="tabs">
+                                优秀教师<span>EXCELLENT TEACHER</span>
+                            </div>
+                        </div>
+                  </div>
+                  <div class="yearbox">
+                      <div class="yearlist">
+                          <label>选择年份：</label>
+                          <ul class="clearfix">
+                              <!-- <li class="activebtn">2018年度</li> -->
+                              <li  :class="{activebtn:year == index}" v-for="item,index in yearBox" @click="yearChange(index)">{{item}}</li>
+                          </ul>
+                      </div>
+                      <div class="schoollist">
+                          <label>学校分类：</label>
+                          <ul class="clearfix">
+                              <li :class="{activebtn:school == 0}"  @click="schoolrChange(0)">全部分类</li>
+                              <li  :class="{activebtn:school == ++index}" v-for="item,index in schBox" @click="schoolChange(index)">{{item}}</li>
+                          </ul>
+                      </div>
+                      <div class="tutorlist">
+                          <label>教师分类：</label>
+                          <ul class="clearfix">
+                              <li :class="{activebtn:tutor == 0}"  @click="tutorChange(0)">全部分类</li>
+                              <li  :class="{activebtn:tutor == ++index}" v-for="item,index in tutorBox" @click="tutorChange(index)">{{item}}</li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="cardBoard">
+                      <ul class="clearfix">
+                          <li @click="toDetailPage">
+                          <div class="clearfix">
+                              <div><img src="./images/teacher.png" alt=""></div>
+                              <h4>张小妞</h4>
+                              <span class="green">年度教师提名奖-中小学</span>
+                          </div>
+                          <p>任职学校：罗湖区花园国际小学</p>
+                          <p>工作教龄：12年</p>
+                          <p>所教科目：音乐、美术</p>
+                          </li>
+                          <li>
+                          <div>
+                              <div><img src="./images/teacher.png" alt=""></div>
+                              <h4>张小妞</h4>
+                              <span class="pink">年度教师提名奖-中小学</span>
+                          </div>
+                          <p>任职学校：罗湖区花园国际小学</p>
+                          <p>工作教龄：12年</p>
+                          <p>所教科目：音乐、美术</p>
+                          </li>
+                          <li class="nomargin">
+                          <div>
+                              <div><img src="./images/teacher.png" alt=""></div>
+                              <h4>张小妞</h4>
+                              <span class="green">年度教师提名奖-中小学</span>
+                          </div>
+                          <p>任职学校：罗湖区花园国际小学</p>
+                          <p>工作教龄：12年</p>
+                          <p>所教科目：音乐、美术</p>
+                          </li>
+                          <li>
+                          <div class="clearfix">
+                              <div><img src="./images/teacher.png" alt=""></div>
+                              <h4>张小妞</h4>
+                              <span class="green">年度教师提名奖-中小学</span>
+                          </div>
+                          <p>任职学校：罗湖区花园国际小学</p>
+                          <p>工作教龄：12年</p>
+                          <p>所教科目：音乐、美术</p>
+                          </li>
+                          <li>
+                          <div>
+                              <div><img src="./images/teacher.png" alt=""></div>
+                              <h4>张小妞</h4>
+                              <span class="green">年度教师提名奖-中小学</span>
+                          </div>
+                          <p>任职学校：罗湖区花园国际小学</p>
+                          <p>工作教龄：12年</p>
+                          <p>所教科目：音乐、美术</p>
+                          </li>
+                          <li class="nomargin">
+                          <div>
+                              <div><img src="./images/teacher.png" alt=""></div>
+                              <h4>张小妞</h4>
+                              <span class="yellow">年度教师提名奖-中小学</span>
+                          </div>
+                          <p>任职学校：罗湖区花园国际小学</p>
+                          <p>工作教龄：12年</p>
+                          <p>所教科目：音乐、美术</p>
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="pager">
+                        <el-pagination
+                            background
+                            :current-page.sync="currentPage"
+                            @current-change="changePage"
+                            layout="prev, pager, next"
+                            :total="1000">
+                        </el-pagination>
+                  </div>
+            </div>
+        <!-- </div> -->
+		<div class="footer">
+			<div class="top clearfix">
+				<img src="./images/logo.png" alt="">
+				<ul>
+				  <li>
+					<img src="./images/address.png" alt="">
+					<h5>电话咨询</h5>
+					<p>0755-25023162  <span>（工作日周一至周五 9:00-18:00）</span></p>
+				  </li>
+				  <li>
+					<img src="./images/phone.png" alt="">
+					<h5>总部地址</h5>
+					<p>深圳市罗湖区桂园路红围街19号深投人力资源大院 </p>
+				  </li>
+				</ul>
+			</div>
+			<p>Copyright 2018-2019  深圳市人力资本（集团）有限公司 版权所有</p>
+		</div>
+	</div>
+<script src="libs/vue.js"></script>
+<script src="libs/swiper.min.js"></script>
+<script src="libs/element-ui/eleIndex.js"></script>
+<script src="js/tutorList.min.js"></script>
+</body>
+</html>
